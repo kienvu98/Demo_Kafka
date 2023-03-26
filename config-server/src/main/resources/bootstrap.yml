@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: configserver
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/kienvu98/spring-cloud-server-repository
+          default-label: main
+          username: kienvu98
+          password: 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
+          clone-on-start: true
+    fail-fast: true
+  security:
+    user:
+      name: spring_cloud_user
+      password: springCloud_Pwd!
