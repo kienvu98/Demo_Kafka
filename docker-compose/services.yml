@@ -7,7 +7,7 @@ services:
     volumes:
       - "./docker-logs:/workspace/twitter-to-kafka-service/logs"
     user: root
-    entrypoint: ["check-config-server-started.sh"]
+    entrypoint: ["sh","check-config-server-started.sh"]
     environment:
       - "JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Xms128m -Xmx256m"
       - "LOGGING_LEVEL_COM_MICROSERVICES_DEMO=info"
