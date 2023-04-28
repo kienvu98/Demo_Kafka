@@ -14,6 +14,8 @@
         <module>config-server</module>
         <module>kafka-to-elastic-service</module>
         <module>elastic</module>
+        <module>common-util</module>
+		<module>elastic-query-service</module>
 
 	</modules>
 	<parent>
@@ -41,7 +43,7 @@
 		<kafka-avro-serializer.version>5.5.1</kafka-avro-serializer.version>
 		<spring-cloud.version>2.2.6.RELEASE</spring-cloud.version>
 		<spring-cloud-denpendencies.version>Hoxton.SR11</spring-cloud-denpendencies.version>
-		<spring-elastic-search.version>7.14.1</spring-elastic-search.version>
+		<spring-elastic-search.version>7.9.1</spring-elastic-search.version>
 	</properties>
 
 	<repositories>
@@ -54,6 +56,13 @@
 	<dependencyManagement>
 		<dependencies>
 			<!-- LOCAL -->
+
+			<dependency>
+				<groupId>com.microservices.demo</groupId>
+				<artifactId>common-util</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>com.microservices.demo</groupId>
 				<artifactId>elastic-model</artifactId>
@@ -69,6 +78,12 @@
 			<dependency>
 				<groupId>com.microservices.demo</groupId>
 				<artifactId>elastic-index-client</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.microservices.demo</groupId>
+				<artifactId>elastic-query-client</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
@@ -261,5 +276,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
 </project>

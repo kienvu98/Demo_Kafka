@@ -1,7 +1,7 @@
 package com.microservices.demo.elastic.index.client.service.impl;
 
 import com.microservices.demo.config.ElasticConfigData;
-import com.microservices.demo.elastic.index.client.service.ElasticClient;
+import com.microservices.demo.elastic.index.client.service.ElasticIndexClient;
 import com.microservices.demo.elastic.index.client.util.ElasticIndexUtil;
 import com.microservices.demo.elastic.model.index.impl.TwitterIndexModel;
 import org.slf4j.Logger;
@@ -16,19 +16,21 @@ import java.util.List;
 
 @Service
 @ConditionalOnProperty(name = "elastic-config.is-repository", havingValue = "false")
-public class TwitterElasticIndexClient implements ElasticClient<TwitterIndexModel> {
+public class TwitterElasticIndexClient implements ElasticIndexClient<TwitterIndexModel> {
 
     private static final Logger LOG = LoggerFactory.getLogger(TwitterElasticIndexClient.class);
 
     private final ElasticConfigData elasticConfigData;
+
     private final ElasticsearchOperations elasticsearchOperations;
+
     private final ElasticIndexUtil<TwitterIndexModel> elasticIndexUtil;
 
     public TwitterElasticIndexClient(ElasticConfigData configData,
-                                     ElasticsearchOperations operations,
+                                     ElasticsearchOperations elasticOperations,
                                      ElasticIndexUtil<TwitterIndexModel> indexUtil) {
         this.elasticConfigData = configData;
-        this.elasticsearchOperations = operations;
+        this.elasticsearchOperations = elasticOperations;
         this.elasticIndexUtil = indexUtil;
     }
 
@@ -39,7 +41,8 @@ public class TwitterElasticIndexClient implements ElasticClient<TwitterIndexMode
                 indexQueries,
                 IndexCoordinates.of(elasticConfigData.getIndexName())
         );
-        LOG.info("Documents indexed successfully with type: {} and ids: {}", TwitterIndexModel.class.getName(), documentIds);
+        LOG.info("Documents indexed successfully with type: {} and ids: {}", TwitterIndexModel.class.getName(),
+                documentIds);
         return documentIds;
     }
 }

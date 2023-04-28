@@ -16,17 +16,18 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.Objects;
 
 @Configuration
-@EnableElasticsearchRepositories(basePackages = "com.microservice.demo.elastic.repository")
-public class ElasticConfig extends AbstractElasticsearchConfiguration {
+@EnableElasticsearchRepositories(basePackages = "com.microservices.demo.elastic")
+public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
+
     private final ElasticConfigData elasticConfigData;
-    public ElasticConfig(ElasticConfigData configData) {
+
+    public ElasticsearchConfig(ElasticConfigData configData) {
         this.elasticConfigData = configData;
     }
 
     @Override
     @Bean
     public RestHighLevelClient elasticsearchClient() {
-        // connection elasticSerach server
         UriComponents serverUri = UriComponentsBuilder.fromHttpUrl(elasticConfigData.getConnectionUrl()).build();
         return new RestHighLevelClient(
                 RestClient.builder(new HttpHost(
@@ -36,14 +37,15 @@ public class ElasticConfig extends AbstractElasticsearchConfiguration {
                 )).setRequestConfigCallback(
                         requestConfigBuilder ->
                                 requestConfigBuilder
-                                        .setConnectTimeout(elasticConfigData.getConnectionTimeoutMs())
-                                        .setSocketTimeout(elasticConfigData.getSocketTimeoutMs())
+                                    .setConnectTimeout(elasticConfigData.getConnectTimeoutMs())
+                                    .setSocketTimeout(elasticConfigData.getSocketTimeoutMs())
                 )
         );
     }
 
     @Bean
-    public ElasticsearchOperations elsElasticsearchOperations(){
+    public ElasticsearchOperations elasticsearchTemplate() {
         return new ElasticsearchRestTemplate(elasticsearchClient());
     }
+
 }
