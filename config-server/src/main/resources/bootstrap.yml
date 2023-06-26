@@ -8,7 +8,7 @@ spring:
           uri: https://github.com/kienvu98/spring-cloud-server-repository
           default-label: main
           username: kienvu98
-          password: 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
+          password: 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
           clone-on-start: true
     fail-fast: true
   security:

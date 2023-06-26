@@ -3,7 +3,7 @@ package com.microservices.demo.common.util;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CollectionsUtil {
+public class  CollectionsUtil {
 
     private CollectionsUtil(){
     }

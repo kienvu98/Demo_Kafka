@@ -2,7 +2,7 @@ package com.microservices.demo.kafka.to.elastic.service.consumer.impl;
 
 import com.microservices.demo.config.KafkaConfigData;
 import com.microservices.demo.config.KafkaConsumerConfigData;
-import com.microservices.demo.elastic.index.client.service.ElasticClient;
+import com.microservices.demo.elastic.index.client.service.ElasticIndexClient;
 import com.microservices.demo.elastic.model.index.impl.TwitterIndexModel;
 import com.microservices.demo.kafka.admin.client.KafkaAdminClient;
 import com.microservices.demo.kafka.avro.model.TwitterAvroModel;
@@ -35,7 +35,7 @@ public class TwitterKafkaConsumer implements KafkaConsumer<Long, TwitterAvroMode
 
     private final AvroToElasticModelTransformer avroToElasticModelTransformer;
 
-    private final ElasticClient<TwitterIndexModel> elasticIndexClient;
+    private final ElasticIndexClient<TwitterIndexModel> elasticIndexClient;
 
     private final KafkaConsumerConfigData kafkaConsumerConfigData;
 
@@ -43,7 +43,7 @@ public class TwitterKafkaConsumer implements KafkaConsumer<Long, TwitterAvroMode
                                 KafkaAdminClient adminClient,
                                 KafkaConfigData configData,
                                 AvroToElasticModelTransformer transformer,
-                                ElasticClient<TwitterIndexModel> indexClient,
+                                ElasticIndexClient<TwitterIndexModel> indexClient,
                                 KafkaConsumerConfigData consumerConfigData) {
         this.kafkaListenerEndpointRegistry = listenerEndpointRegistry;
         this.kafkaAdminClient = adminClient;

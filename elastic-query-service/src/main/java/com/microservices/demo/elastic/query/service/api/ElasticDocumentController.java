@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping(value = "/documents")
 public class ElasticDocumentController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ElasticQueryServiceApplication.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ElasticQueryServiceApplication.class); 
 
     private final ElasticQueryService elasticQueryService;
 
