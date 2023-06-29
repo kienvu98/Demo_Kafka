@@ -9,4 +9,5 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "elastic-query-service")
 public class ElasticQuerySericeConfigData {
     private String version;
+    private Long backPressureDelayMs;
 }
