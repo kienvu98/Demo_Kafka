@@ -10,4 +10,5 @@ import org.springframework.context.annotation.Configuration;
 public class ElasticQuerySericeConfigData {
     private String version;
     private Long backPressureDelayMs;
+    private String customAudience;
 }

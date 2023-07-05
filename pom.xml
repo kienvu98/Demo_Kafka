@@ -49,6 +49,7 @@
 		<spring-cloud.version>2.2.6.RELEASE</spring-cloud.version>
 		<spring-cloud-denpendencies.version>Hoxton.SR11</spring-cloud-denpendencies.version>
 		<spring-elastic-search.version>7.9.1</spring-elastic-search.version>
+		<spring-postgresql.version>42.6.0</spring-postgresql.version>
 	</properties>
 
 	<repositories>
@@ -262,6 +263,12 @@
 				<groupId>org.elasticsearch.client</groupId>
 				<artifactId>elasticsearch-rest-high-level-client</artifactId>
 				<version>${spring-elastic-search.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>${spring-postgresql.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
