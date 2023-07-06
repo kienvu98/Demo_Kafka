@@ -2,6 +2,7 @@ package com.microservices.demo.elastic.query.web.client.service.impl;
 
 import com.microservices.demo.config.ElasticQueryWebClientConfigData;
 import com.microservices.demo.elastic.query.web.client.common.exception.ElasticQueryWebClientException;
+import com.microservices.demo.elastic.query.web.client.common.model.ElasticQueryWebClientAnalyticsReponseModel;
 import com.microservices.demo.elastic.query.web.client.common.model.ElasticQueryWebClientRequestModel;
 import com.microservices.demo.elastic.query.web.client.common.model.ElasticQueryWebClientResponseModel;
 import com.microservices.demo.elastic.query.web.client.service.ElasticQueryWebClient;
@@ -36,13 +37,15 @@ public class TwitterElasticQueryWebClient implements ElasticQueryWebClient {
     }
 
     @Override
-    public List<ElasticQueryWebClientResponseModel> getDataByText(ElasticQueryWebClientRequestModel requestModel) {
+    public ElasticQueryWebClientAnalyticsReponseModel getDataByText(ElasticQueryWebClientRequestModel requestModel) {
         LOG.info("Querying by text {}", requestModel.getText());
-        return getWebClient(requestModel).bodyToFlux(ElasticQueryWebClientResponseModel.class)
-                .collectList().block();
+        return getWebClient(requestModel)
+                .bodyToMono(ElasticQueryWebClientAnalyticsReponseModel.class)
+                .log()
+                .block();
     }
 
-    private WebClient.ResponseSpec getWebClient(ElasticQueryWebClientRequestModel requestModel){
+    private WebClient.ResponseSpec getWebClient(ElasticQueryWebClientRequestModel requestModel) {
         return webClientBuilder.build()
                 .method(HttpMethod.valueOf(elasticQueryWebClientConfigData.getQueryByText().getMethod()))
                 .uri(elasticQueryWebClientConfigData.getQueryByText().getUri())
@@ -61,7 +64,7 @@ public class TwitterElasticQueryWebClient implements ElasticQueryWebClient {
     }
 
     private <T> ParameterizedTypeReference createParameterizedTypeReference() {
-        return new ParameterizedTypeReference<>(){
+        return new ParameterizedTypeReference<>() {
 
         };
     }
