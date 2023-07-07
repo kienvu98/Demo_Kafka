@@ -72,8 +72,15 @@ public class TwitterElasticQueryService implements ElasticQueryService {
     private Long getWordCount(String text, String accessToken) {
         if (QueryType.KAFKA_STATE_STORE.getType().equals(elasticQuerySericeConfigData.getWebClient().getQueryType())) {
             return getFromKafkaStateStore(text, accessToken).getWordCount();
+        } else if (QueryType.ANALYTICS_DATABASE.getType().equals(elasticQuerySericeConfigData.getWebClient().getQueryType())){
+            return getFromAnalyticsDatabase(text, accessToken).getWordCount();
         }
         return 0L;
+    }
+
+    private ElasticQueryServiceWordCountResponseModel getFromAnalyticsDatabase(String text, String accessToken) {
+        ElasticQuerySericeConfigData.Query query = elasticQuerySericeConfigData.getQueryFromAnalyticsDatabase();
+        return retrieverResoponesModel(text,accessToken,query);
     }
 
     private ElasticQueryServiceWordCountResponseModel getFromKafkaStateStore(String text, String accessToken) {

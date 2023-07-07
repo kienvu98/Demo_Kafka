@@ -11,9 +11,9 @@ public class ElasticQuerySericeConfigData {
     private String version;
     private Long backPressureDelayMs;
     private String customAudience;
-
     private WebClient webClient;
     private Query queryFromKafkaStateStore;
+    private Query queryFromAnalyticsDatabase;
 
     @Data
     public static class WebClient {
