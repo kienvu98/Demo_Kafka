@@ -24,10 +24,8 @@ public class AvroToDbEntityModelTransformer {
     public List<AnalyticsEntity> getEntityModel(List<TwitterAnalyticsAvroModel> avroModels) {
         return avroModels.stream()
                 .map(avroModel -> new AnalyticsEntity(
-                        idGenerator.generateId()
-                        , avroModel.getWord()
-                        , avroModel.getWordCount()
-                        , LocalDateTime.ofInstant(Instant.ofEpochMilli(avroModel.getCreatedAt()), ZoneOffset.UTC)))
+                        idGenerator.generateId(), avroModel.getWord(), avroModel.getWordCount(),
+                        LocalDateTime.ofInstant(Instant.ofEpochMilli(avroModel.getCreatedAt()), ZoneOffset.UTC)))
                 .collect(toList());
     }
 }

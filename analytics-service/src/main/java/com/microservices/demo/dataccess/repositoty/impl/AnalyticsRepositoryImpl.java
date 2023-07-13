@@ -2,7 +2,6 @@ package com.microservices.demo.dataccess.repositoty.impl;
 
 import com.microservices.demo.dataccess.entity.BaseEntity;
 import com.microservices.demo.dataccess.repositoty.AnalyticsCustomRepository;
-import lombok.extern.java.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

@@ -23,6 +23,8 @@
         <module>reactive-elastic-query-web-client</module>
         <module>kafka-streams-service</module>
         <module>analytics-service</module>
+        <module>discovery-service</module>
+        <module>gateway-service</module>
 
     </modules>
 	<parent>
@@ -55,6 +57,7 @@
 		<kafka-streams-avro-serde.version>5.5.1</kafka-streams-avro-serde.version>
 		<kafka-streams.version>2.6.0</kafka-streams.version>
 		<kafka-clients.version>2.6.0</kafka-clients.version>
+		<spring-cloud-starter-circuitbreaker-reactor-resilience4j.version>1.0.4.RELEASE</spring-cloud-starter-circuitbreaker-reactor-resilience4j.version>
 	</properties>
 
 	<repositories>
@@ -292,6 +295,36 @@
 				<groupId>org.apache.kafka</groupId>
 				<artifactId>kafka-clients</artifactId>
 				<version>${kafka-clients.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+				<version>${spring-cloud.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+				<version>${spring-cloud.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
+				<version>${spring-cloud-starter-circuitbreaker-reactor-resilience4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-gateway</artifactId>
+				<version>${spring-cloud.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-redis-reactive</artifactId>
+				<version>${spring-boot.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
